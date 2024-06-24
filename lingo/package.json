@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:studio": "npx drizzle-kit studio",
-    "db:push": "npx drizzle-kit push:pg",
+    "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "next": "14.2.4",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",

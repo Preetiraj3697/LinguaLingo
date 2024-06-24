@@ -1,36 +1,73 @@
-import { cache } from 'react';
-import db from './drizzle';
-import { auth } from '@clerk/nextjs/server';
-import { courses, userProgress } from './schema';
-import { eq } from 'drizzle-orm';
+import { cache } from "react";
+import db from "./drizzle";
+import { auth } from "@clerk/nextjs/server";
+import { challengeProgress, courses, units, userProgress } from "./schema";
+import { eq } from "drizzle-orm";
 
-export const getuserProgress = cache(async () =>
-{
-    const { userId } = await auth();
-    if (!userId)
-    {
-        return null;
-    }
+export const getuserProgress = cache(async () => {
+  const { userId } = await auth();
+  if (!userId) {
+    return null;
+  }
 
-    const data = await db.query.userProgress.findFirst({
-        where: eq(userProgress.userId, userId),
+  const data = await db.query.userProgress.findFirst({
+    where: eq(userProgress.userId, userId),
+    with: {
+      activeCourse: true,
+    },
+  });
+  return data;
+});
+
+export const getUnits = cache(async () => {
+  const { userId } = await auth();
+  const userProgress = await getuserProgress();
+  if (!userId || !userProgress?.activeCourseId) {
+    return [];
+  }
+  // Todo: confirm whether order is needed
+  const data = await db.query.units.findMany({
+    where: eq(units.courseId, userProgress.activeCourseId),
+    with: {
+      lessons: {
         with: {
-            activeCourse: true,
-        }
+          challenges: {
+            with: {
+              challengeProgress: {
+                where: eq(challengeProgress.userId,userId)
+              }
+            },
+          },
+        },
+      },
+    },
+  });
+  const normalizedData = data.map((unit) => {
+    const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
+      const allCompletedChallenges = lesson.challenges.every((challenge) => {
+        return (
+          challenge.challengeProgress &&
+          challenge.challengeProgress.length > 0 &&
+          challenge.challengeProgress.every((progress) => progress.completed)
+        );
+      });
+      return { ...lesson, completed: allCompletedChallenges };
     });
-    return data;
-})
-export const getCourses = cache(async () =>
-{
-    const data = await db.query.courses.findMany();
-    return data;
-})
+    return { ...unit, lessons: lessonsWithCompletedStatus };
+  });
 
-export const getCourseById = cache(async (courseId: number) =>
-{
-    const data = await db.query.courses.findFirst({
-        where: eq(courses.id, courseId),
-        // Todo Populate units and lessions
-    })
-    return data;
-})
+  return normalizedData;
+});
+
+export const getCourses = cache(async () => {
+  const data = await db.query.courses.findMany();
+  return data;
+});
+
+export const getCourseById = cache(async (courseId: number) => {
+  const data = await db.query.courses.findFirst({
+    where: eq(courses.id, courseId),
+    // Todo Populate units and lessions
+  });
+  return data;
+});
