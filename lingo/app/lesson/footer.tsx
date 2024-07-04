@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   onCheck: () => void;
   status: "correct" | "wrong" | "none" | "completed";
+  lessonId?: number;
 };
 
-export const Footer = ({ disabled, onCheck, status }: Props) => {
+export const Footer = ({ disabled, onCheck, status,lessonId }: Props) => {
   useKey("Enter", onCheck, {}, [onCheck]);
   const isMobile = useMedia("(max-width:1024px)");
   return (
