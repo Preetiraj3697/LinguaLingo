@@ -11,7 +11,7 @@ import { ResultCard } from "./result-card";
 import { Challenge } from "./challenge";
 
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { reduceHearts } from "@/actions/user-progress";
 import Image from "next/image";
 import Confetti from "react-confetti";
@@ -25,9 +25,11 @@ type Props = {
   initaiLLessonId: number;
   initaiLLessonChallenges: (typeof challenges.$inferSelect & {
     completed: boolean;
-    challengeOptions: (typeof challengeOptions.$inferSelect)[];
+    challengeOptions: typeof challengeOptions.$inferSelect[];
   })[];
-  userSubscription: any; // Todo: Replace with subscript DB type
+  userSubscription: typeof userSubscription.$inferSelect & {
+    isActive: boolean;
+  } | null;
 };
 const Quiz = ({
   initaiLLessonChallenges,
