@@ -1,0 +1,1 @@
+# LinguaLingo - Interactive platform for language learning.
