@@ -1,8 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { ClerkLoaded, ClerkLoading, SignedOut, SignedIn, SignUpButton, SignInButton } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, SignedOut, SignedIn} from "@clerk/nextjs";
 import {Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+
+import CustomSignInButton from "./customSignInButton";
+import CustomSignUpButton from "./customSignUpbutton";
 
 export default function Home() {
   return (
@@ -20,24 +24,24 @@ export default function Home() {
           </ClerkLoading>
           <ClerkLoaded>
             <SignedOut>
-              <SignUpButton
+              <CustomSignUpButton
                 mode="modal"
                 afterSignInUrl="/learn"
-                afterSignUpurl="/learn"
+                afterSignUpUrl="/learn"
               >
                 <Button size="lg" variant="secondary" className="w-full">
                   Get Started
                 </Button>
-              </SignUpButton>
-              <SignInButton
+              </CustomSignUpButton>
+              <CustomSignInButton
                 mode="modal"
                 afterSignInUrl="/learn"
-                afterSignUpurl="/learn"
+                afterSignUpUrl="/learn"
               >
                 <Button size="lg" variant="primaryOutline" className="w-full">
                   I already have an account
                 </Button>
-              </SignInButton>
+              </CustomSignInButton>
             </SignedOut>
             <SignedIn>
           <Button size="lg" variant="secondary" className="w-full" asChild>

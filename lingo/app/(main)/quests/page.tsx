@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { redirect } from "next/navigation";
+
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { Promo } from "@/components/promo";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -8,8 +11,6 @@ import {
   getuserProgress,
   getUserSubscription,
 } from "@/db/queries";
-import Image from "next/image";
-import { redirect } from "next/navigation";
 
 
 const QuestsPage = async () => {

@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogDescription,
@@ -10,8 +13,6 @@ import {
   DialogContent,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { usePracticeModal } from "@/store/use-practice-modal";
 
 export const PracticeModal = () => {

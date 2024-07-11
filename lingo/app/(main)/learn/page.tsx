@@ -1,6 +1,9 @@
+import { redirect } from "next/navigation";
+
 import { FeedWrapper } from "@/components/feed-wrapper";
+import { Promo } from "@/components/promo";
+import { Quests } from "@/components/quests";
 import { StickyWrapper } from "@/components/sticky-wrapper";
-import { Header } from "./header";
 import { UserProgress } from "@/components/user-progress";
 import {
   getCourseProgress,
@@ -9,10 +12,10 @@ import {
   getuserProgress,
   getUserSubscription,
 } from "@/db/queries";
-import { redirect } from "next/navigation";
+
+import { Header } from "./header";
 import { Unit } from "./unit";
-import { Promo } from "@/components/promo";
-import { Quests } from "@/components/quests";
+
 
 const LearnPage = async () => {
   const userProgressData = getuserProgress();

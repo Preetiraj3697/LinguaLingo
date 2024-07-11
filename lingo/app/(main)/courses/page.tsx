@@ -1,4 +1,5 @@
 import { getCourses, getuserProgress } from "@/db/queries";
+
 import { List } from "./list";
 
 const CoursesPage = async () => {

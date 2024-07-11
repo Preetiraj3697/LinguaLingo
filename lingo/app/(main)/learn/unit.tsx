@@ -1,6 +1,7 @@
 import { lessons, units } from "@/db/schema";
-import { UnitBanner } from "./unit_banner";
+
 import { LessonButton } from "./lesson-button";
+import { UnitBanner } from "./unit_banner";
 
 type Props = {
   id: number;
@@ -19,8 +20,6 @@ type Props = {
 };
 
 export const Unit = ({
-  id,
-  order,
   title,
   description,
   lessons,

@@ -10,8 +10,13 @@
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
     "db:seed": "tsx ./scripts/seed.ts",
-    "db:prod":"tsx ./scripts/prod.ts",
+    "db:prod": "tsx ./scripts/prod.ts",
     "db:reset": "tsx ./scripts/reset.ts"
+  },
+  "author": {
+    "name": "Preeti Raj (Paarthav)",
+    "email": "preetiraj122000@gmail.com",
+    "url": "https://github.com/preetiraj3697"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.6",
@@ -45,10 +50,17 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "autoprefixer": "^10.4.19",
     "drizzle-kit": "^0.22.7",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
-    "postcss": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "pg": "^8.12.0",
+    "postcss": "^8.4.39",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.15.7",
     "typescript": "^5"

@@ -1,7 +1,8 @@
-import { useKey, useMedia } from "react-use";
 import { CheckCircle, XCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useKey, useMedia } from "react-use";
+
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type Props = {
   disabled?: boolean;

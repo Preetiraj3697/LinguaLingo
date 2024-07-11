@@ -1,7 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogDescription,
@@ -10,9 +14,6 @@ import {
   DialogContent,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useHeartsModal } from "@/store/use-hearts-modal";
 
 export const HeartsModal = () => {

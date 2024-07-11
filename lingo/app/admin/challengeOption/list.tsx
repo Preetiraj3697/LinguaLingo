@@ -15,8 +15,8 @@ import {
           <TextField source="text" />
           <BooleanField source="correct" />
           <ReferenceField source="challengeId" reference="challenges" />
-          <TextField src="imageSrc" />
-          <TextField src="audioSrc" />
+          <TextField source="imageSrc" />
+          <TextField source="audioSrc" />
         </Datagrid>
       </List>
     );
